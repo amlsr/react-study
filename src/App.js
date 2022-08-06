@@ -1,5 +1,6 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./components/login/Login";
+import Users from "./components/users/Users";
 import Layout from "./Layout/Layout";
 
 function App() {
@@ -8,7 +9,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" component={Layout} />
+          <Route
+            exact
+            path="/"
+            element={<Navigate replace to="/login"></Navigate>}
+          ></Route>
+          <Route path="/app" element={<Layout />}>
+            <Route path="/app/users" element={<Users />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
